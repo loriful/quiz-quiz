@@ -5,37 +5,28 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
+    instructor: Boolean
   }
 
-  type Thought {
+  type Quiz {
     _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
-
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
+    quizTitle: String
+    quizAnswer: Int
+    classname: String
+    commentCount: Int
+    questionCount: Int
   }
 
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+    quizes(quizTitle: String): [Quiz]
+    quiz(_id: ID!): Quiz
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, instructor: Boolean!): Auth
   }
 
   type Auth {
