@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const scoresSchema = require('./Scores');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
@@ -9,7 +10,7 @@ const userSchema = new Schema(
       unique: true,
       trim: true
     },
-    instructor: {
+    isInstructor: {
       type: Boolean,
       default: false
     },
@@ -24,6 +25,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    scores: [scoresSchema]
   },
   {
     toJSON: {

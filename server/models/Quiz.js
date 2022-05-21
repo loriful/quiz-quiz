@@ -1,38 +1,45 @@
 const { Schema, model} = require('mongoose');
-// const comment = require('./Comment');
+const classSchema = require('./Class');
+const questionSchema = require('./Question');
+const Comments = require('./Comment');
+const User = require('./User');
 const dateFormat = require('../utils/dateFormat');
 
-const quizObject = new Schema(
-    {
-        question: {
-            type: String,
-        },
-        answers: [],        
-        correct: {
-            type: Number
-        }    
-    }  
-)
 
 const quizSchema = new Schema(
     {
         quizTitle: {
           type: String,
           required: 'You must provide a title.',
-          minlength: 15,
-          maxlength: 40
+          minlength: 5,
+          maxlength: 40,
+          unique: true,
+          trim: true
         },
-        quizQuestions: [quizObject],
+        quizId: {
+          type: String,
+        },
+        quizQuestions: [questionSchema],
+        points: {
+          type: Number
+        },
         createdAt: {
           type: Date,
           default: Date.now,
           get: timestamp => dateFormat(timestamp)
         },
         classname: {
-          type: String,
-          required: 'You must provide a class name.'
+          type: Schema.Types.ObjectId,
+          ref: "Class"
         },
-        comments: []
+        owner: {
+          type: Schema.Types.ObjectId,
+          ref: "User"
+        },
+        comments: {
+          type: Schema.Types.ObjectId,
+          ref: "Comment"
+        }
       },
       {
         toJSON: {
@@ -40,8 +47,8 @@ const quizSchema = new Schema(
           virtuals: true
         }
       }
-    )
-    
+);
+
 quizSchema.virtual('commentCount').get(function() {
       return this.comments.length;
 });
@@ -51,6 +58,6 @@ quizSchema.virtual('questionCount').get(function() {
 });
     
 const Quiz = model('Quiz', quizSchema);
-    
+
 module.exports = Quiz;
     
