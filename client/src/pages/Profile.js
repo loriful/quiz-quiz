@@ -10,7 +10,9 @@ const Profile = () => {
       </div>
 
       <div className="flex-row justify-space-between mb-3">
-        <div className="col-12 mb-3 col-lg-8">{/* PRINT QUIZ LIST  */}</div>
+        <div className="col-12 mb-3 col-lg-8">{/* PRINT THOUGHT LIST  */}</div>
+
+        <div className="col-12 col-lg-3 mb-3">{/* PRINT FRIEND LIST */}</div>
       </div>
     </div>
   );
