@@ -24,7 +24,7 @@ const typeDefs = gql`
     quizQuestions: [Questions]
     points: Int
     class:  [Class]
-    owner: [User]
+    owner: String
     comments: [Comment]
     questionCount: Int
     commentCount: Int
@@ -64,34 +64,37 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    quizzes: [Quiz]
-    quiz(quizTitle: String!): Quiz
-    classes: [Class]
-    class(classId: String!): Class
-    instructors: [User]
-    instructor(username: String!): User
+    getUsers: [User]
+    getUser(username: String!): User
+
+    getQuizzes: [Quiz]
+    getQuiz(quizTitle: String!): Quiz
+
+    getClasses: [Class]
+    getClass(classId: String!): Class
+    
+    getInstructors: [User]
+    getInstructor(username: String!): User
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!, instructor: Boolean!): Auth
+    addUser(username: String!, email: String!, password: String!, isInstructor: Boolean!): Auth
     
-    addClass(classname: String!, classId: String!, instructor: String!, description: String): Class
-    addQuiz(quizId: String!, quizTitle: String!, points: Int, class: String, owner: String): Quiz
-    addQuestion(quizTitle: String!, question: String!, answersArr: [String], correct: Int): Questions
-    tallyScores(username: String!, quizId: String!, missed: [Int], tally: Int!): User
+    addClass(classname: String!, classId: String!, instructor: String!): Class
+    addQuiz(quizId: String!, quizTitle: String!, points: Int!): Quiz
+    addQuestion(quizTitle: String!, question: String!, answersArr: [String!]): Quiz
+    addScores(username:String!, quizId: String!, missed: [Int]): ScoresSchema
+    tallyScores(username: String!, quizId: String!, missed: [Int!]): User
     
     deleteUser(username: String!): User
     deleteClass(classId: String!): Class
     deleteQuiz(quizId: String!): Quiz
     deleteQuestion(quizId: String!, num: Int!): Quiz
 
-    updateUser(username: String!, email: String, instructor: Boolean, scores: [String]): User
-    updateQuiz(quizId: String!): Quiz
-    updateClass(classid: String!): Class
-  
+    updateUser(username: String!, email: String, isInstructor: Boolean, scores: [String]): User
+    updateQuiz(quizId: String!, quizTitle: String, points: Int, owner: String, class: [String]): Quiz
+    updateClass(classid: String!, classname: String, classId: String, description: String, instructor: String): Class
   }
 
   type Auth {

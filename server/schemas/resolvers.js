@@ -4,42 +4,42 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
+    getUsers: async () => {
       return User.find()
         .select('-__v -password')
         .sort({ _id: -1 });
     },
-    user: async (parent, { username }) => {
+    getUser: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password');
     },
-    quizzes: async () => {
+    getQuizzes: async () => {
       return Quiz.find()
       .select('-__v')
       .sort({ quizTitle: -1 });
     },
-    quiz: async (parent, { quizId }) => {
+    getQuiz: async (parent, { quizId }) => {
       return Quiz.findOne({ quizId })
         .select('-__v');
     },
-    classes: async () => {
+    getClasses: async () => {
       return Class.find()
         .select('-__v')
         .sort({ classname: -1});
     },
     
-    class: async (parent, { classId }) => {
+    getClass: async (parent, { classId }) => {
       return Class.findOne({ classId })
         .select('-__v');
     },
 
-    instructors: async () => {
+    getInstructors: async () => {
       const selectUsers = User.find();
       return selectUsers.filter(x => selectUsers.instructor) 
         .select('-__v')
         .sort({ username: -1 });
     },
-    instructor: async (parent, { insName }) => {
+    getInstructor: async (parent, { insName }) => {
       return User.fineOne({ insName })
         .select('__v');
       }
@@ -49,6 +49,7 @@ const resolvers = {
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
+
       return { token, user };
     },
 
@@ -68,71 +69,111 @@ const resolvers = {
       return { token, user };
     },
 
-    addQuiz: async (parent, args) => {
-      const quiz = await Quiz.create(args);
-      return quiz;
+    addQuiz: async (parent, args, context) => {
+      if (context.user) {  // && context.isInstructor) 
+        return Quiz.create(args);
+      };
+      throw new AuthenticationError('Please log in first! You must be an instructor to create a quiz.');
     },
 
-    addClass: async (parent, args) => {
-      const newClass = await Class.create(args);
-      return newClass;
+    addClass: async (parent, args, context) => {
+      if (context.user) { // && context.isInstructor) {
+        return await Class.create(args);
+        };
+      throw new AuthenticationError('Please log in first!  You must be an instructor to create a class.');
+
     },
     
-    addQuestion: async (parent, args) => {
+    addQuestion: async (parent, args, context) => {
+      if (context.user) {
       const updatedQuiz = await Quiz.findOneAndUpdate (
         { quizId: args.quizId },
         { $push: { quizQuestions: { question: args.question, answersArr: args.answersArr, correct: args.correct }}},
         { new: true, runValidators: true });
       return updatedQuiz;
+      };
+      throw new AuthenticationError('Please log in first!  You must be an instructor to create quiz questions.');
+
    },
 
-   deleteUser: async (parent, username) => {
-    return User.findOneAndDelete(username);
+   deleteUser: async (parent, username, context) => {
+    if (context.user) {
+      return User.findOneAndDelete(username);
+    };
+    throw new AuthenticationError('Please log in first!');
+
   },
 
-   deleteQuiz: async (parent, quizId) => {
-     return Quiz.findOneAndDelete(quizId);
+   deleteQuiz: async (parent, quizId, context) => {
+     if (context.user) { //&& isInstructor
+      return Quiz.findOneAndDelete(quizId);
+     };
+     throw new AuthenticationError('Please log in first!  You must be an instructor to delete a quiz.');
    },
 
-   deleteQuestion: async (parent, args) => {
-    const updatedQuiz = await Quiz.findOneAndUpdate (
-      { quizId: args.quizId },
-      { $pull: { quizQuestions: args.num }},
-      { new: true });
-      return updatedQuiz;
+   deleteQuestion: async (parent, args, context) => {
+     if (context.user) { //&& isInstructor
+        const updatedQuiz = await Quiz.findOneAndUpdate (
+          { quizId: args.quizId },
+          { $pull: { quizQuestions: args.num }},
+          { new: true });
+        return updatedQuiz;
+      };
+      throw new AuthenticationError('Please log in first!  You must be an instructor to delete questions.');
   },
 
-  deleteClass: async (parent, classname) => {
-    return Class.findOneAndDelete(classname);
+  deleteClass: async (parent, classname, context) => {
+    if (context.user) { //&& isInstructor
+      return Class.findOneAndDelete(classname);
+    };
+    throw new AuthenticationError('Please log in first!  You must be an instructor to delete a class.');
   },
   
-  tallyScores: async (parent, args) => {
-    const updatedUser = await User.findOneAndUpdate (
-      { username: args.username },
-      { $push: { scores: { quizId: args.quizId, missed: args.missed, tally: args.tally }}},
-      { new: true, runValidators: true });
-    return updatedUser;
+  tallyScores: async (parent, args, context) => {
+    if (context.user) {
+        const handleQuiz = await Quiz.findOne ({ quizId: args.quizId });
+        if (handleQuiz) {
+          const grade = 100 - (handleQuiz.points* args.missed.length);
+          const updatedUser = await User.findOneAndUpdate (
+            { username: args.username },
+            { $push: { scores: { quizId: args.quizId, missed: args.missed, tally: grade }}},
+            { new: true, runValidators: true });
+          return updatedUser;
+        };
+        throw new AuthenticationError('Please select a valid quiz.');
+    };
+    throw new AuthenticationError('Please log in first!');
     },
   
-    updateUser: async (parent, args) =>  {
-       return await User.findOneAndUpdate (
-         { username: args.username },
-         args,
-         { new: true, runValidators: true});
-    },
-
-    updateQuiz: async (parent, args) =>  {
-        return await Quiz.findOneAndUpdate (
-          { quizId: args.quizId }, 
+    updateUser: async (parent, args, context) =>  {
+        if (context.user) {
+          return await User.findOneAndUpdate (
+          { username: args.username}, 
           args,
           { new: true, runValidators: true});
+          };
+
+        throw new AuthenticationError('Please log in first!');    
     },
 
-    updateClass: async (parent, args) =>  {
-        return await Class.findOneAndUpdate (
-          { classsId: args.classId },
-          args,
-          { new: true, runValidators: true});
+    updateQuiz: async (parent, args, context) =>  {
+        if (context.user) {
+          return await Quiz.findOneAndUpdate (
+            { quizId: args.quizId }, 
+            args,
+            { new: true, runValidators: true});
+        };
+       throw new AuthenticationError('Please log in first!  You must be an instructor to update a quiz.');
+    },
+
+    updateClass: async (parent, args, context) =>  {
+        if (context.user) {
+          return await Class.findOneAndUpdate (
+            { classsId: args.classId },
+            args,
+            { new: true, runValidators: true});
+        };
+        throw new AuthenticationError('Please log in first!  You must be an instructor to update a quiz.');
     }
 }
 };

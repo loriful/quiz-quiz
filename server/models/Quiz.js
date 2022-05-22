@@ -10,14 +10,13 @@ const quizSchema = new Schema(
     {
         quizTitle: {
           type: String,
-          required: 'You must provide a title.',
           minlength: 5,
           maxlength: 40,
-          unique: true,
           trim: true
         },
         quizId: {
           type: String,
+          unique: true
         },
         quizQuestions: [questionSchema],
         points: {
@@ -33,8 +32,8 @@ const quizSchema = new Schema(
           ref: "Class"
         },
         owner: {
-          type: Schema.Types.ObjectId,
-          ref: "User"
+          type: String,
+          trim: true
         },
         comments: {
           type: Schema.Types.ObjectId,
@@ -48,10 +47,6 @@ const quizSchema = new Schema(
         }
       }
 );
-
-quizSchema.virtual('commentCount').get(function() {
-      return this.comments.length;
-});
 
 quizSchema.virtual('questionCount').get(function() {
       return this.quizQuestions.length;
