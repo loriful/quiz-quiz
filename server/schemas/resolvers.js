@@ -70,14 +70,14 @@ const resolvers = {
     },
 
     addQuiz: async (parent, args, context) => {
-      if (context.user) {  // && context.isInstructor) 
+      if (context.user && context.user.isInstructor) {
         return Quiz.create(args);
       };
       throw new AuthenticationError('Please log in first! You must be an instructor to create a quiz.');
     },
 
     addClass: async (parent, args, context) => {
-      if (context.user) { // && context.isInstructor) {
+      if (context.user && context.user.isInstructor) {
         return await Class.create(args);
         };
       throw new AuthenticationError('Please log in first!  You must be an instructor to create a class.');
@@ -85,7 +85,7 @@ const resolvers = {
     },
     
     addQuestion: async (parent, args, context) => {
-      if (context.user) {
+      if (context.user && context.user.isInstructor) {
       const updatedQuiz = await Quiz.findOneAndUpdate (
         { quizId: args.quizId },
         { $push: { quizQuestions: { question: args.question, answersArr: args.answersArr, correct: args.correct }}},
@@ -105,14 +105,14 @@ const resolvers = {
   },
 
    deleteQuiz: async (parent, quizId, context) => {
-     if (context.user) { //&& isInstructor
+     if (context.user && context.user.isInstructor) {
       return Quiz.findOneAndDelete(quizId);
      };
      throw new AuthenticationError('Please log in first!  You must be an instructor to delete a quiz.');
    },
 
    deleteQuestion: async (parent, args, context) => {
-     if (context.user) { //&& isInstructor
+     if (context.user && context.user.isInstructor) {
         const updatedQuiz = await Quiz.findOneAndUpdate (
           { quizId: args.quizId },
           { $pull: { quizQuestions: args.num }},
@@ -123,7 +123,7 @@ const resolvers = {
   },
 
   deleteClass: async (parent, classname, context) => {
-    if (context.user) { //&& isInstructor
+    if (context.user && context.user.isInstructor) {
       return Class.findOneAndDelete(classname);
     };
     throw new AuthenticationError('Please log in first!  You must be an instructor to delete a class.');
@@ -157,17 +157,17 @@ const resolvers = {
     },
 
     updateQuiz: async (parent, args, context) =>  {
-        if (context.user) {
+        if (context.user && context.user.isInstructor) {
           return await Quiz.findOneAndUpdate (
             { quizId: args.quizId }, 
             args,
             { new: true, runValidators: true});
         };
-       throw new AuthenticationError('Please log in first!  You must be an instructor to update a quiz.');
+        throw new AuthenticationError('Please log in first!  You must be an instructor to update a quiz.');
     },
 
     updateClass: async (parent, args, context) =>  {
-        if (context.user) {
+      if (context.user && context.user.isInstructor) {
           return await Class.findOneAndUpdate (
             { classsId: args.classId },
             args,
