@@ -17,8 +17,8 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <div>
-              <ThoughtList thoughts={thoughts} title="Available Quizzes" />
               <img src="https://blog.hubspot.com/hubfs/google-quiz.jpg"></img>
+              <ThoughtList thoughts={thoughts} title="Available Quizzes" />
             </div>
           )}
         </div>
