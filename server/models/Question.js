@@ -8,11 +8,9 @@ const questionSchema = new Schema(
         answersArr: [{type: String}],     
         correct: {
             type: Number
-        },
-        num: {
-            type: Number
-        }   
-    }  
+        }
+    }
+
 )
 
 module.exports = questionSchema;

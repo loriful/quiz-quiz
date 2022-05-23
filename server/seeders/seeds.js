@@ -12,24 +12,14 @@ db.once('open', async () => {
     await Class.deleteMany({});
     
     await User.create(userSeeds); 
+    await Quiz.create(quizSeeds); 
     
-    await Class.create(classSeeds);
-    
-    for (let i = 0; i < quizSeeds.length; i++) {
-      const { _id, classId } = await Class.create(classSeeds[i]);
+    for (let i = 0; i < classSeeds.length; i++) {
+      const { _id, className } = await Class.create(classSeeds[i]);
       await Quiz.findOneAndUpdate(
-          { classname: _id },   // finish when models have been updated
-          { classname: _id });
+          { className: className },   
+          { $push: {quizIds: {_id }}});
       };
-    
-    const allClass = await getClasses();
-    for (let i = 0; i < allClass.length; i==) {
-      await User.findOneAndUpdate(
-        {classname: allClass[i]},
-      );
-    };
-    
-    
     
   } catch (err) {
     console.error(err);

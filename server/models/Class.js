@@ -4,7 +4,7 @@ const Quiz = require('./Quiz');
 
 const ClassSchema = new Schema(
     {
-        classname: {
+        className: {
             type: String,
             required:  "Class name is required.",
             trim: true
@@ -12,7 +12,8 @@ const ClassSchema = new Schema(
         classId: {
             type: String,
             trim: true,
-            require: true
+            require: true,
+            unique: true
         },
         description: {
             type: String,
@@ -23,8 +24,8 @@ const ClassSchema = new Schema(
             trim: true,
             require: true
         },
-        members: {
-            type: Schema.Types.ObjectId,
+        enrollees: {
+            type: [Schema.Types.ObjectId],
             ref: "User"
         },
         quizIds: {
@@ -42,6 +43,10 @@ const ClassSchema = new Schema(
 
 ClassSchema.virtual('quizCount').get(function() {
     return this.quizIds.length;
+});
+
+ClassSchema.virtual('enrolledCount').get(function() {
+    return this.enrollees.length;
 });
   
   const Class = model('Class', ClassSchema);

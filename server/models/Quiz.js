@@ -27,9 +27,8 @@ const quizSchema = new Schema(
           default: Date.now,
           get: timestamp => dateFormat(timestamp)
         },
-        classname: {
-          type: Schema.Types.ObjectId,
-          ref: "Class"
+        className: {
+          type: String
         },
         owner: {
           type: String,

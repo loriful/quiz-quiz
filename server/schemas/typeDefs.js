@@ -14,7 +14,6 @@ const typeDefs = gql`
     question: String
     answersArr: [String]
     correct: Int
-    num: Int
   }
 
   type Quiz {
@@ -23,7 +22,7 @@ const typeDefs = gql`
     quizId: String
     quizQuestions: [Questions]
     points: Int
-    class:  [Class]
+    className:  String
     owner: String
     comments: [Comment]
     questionCount: Int
@@ -54,13 +53,14 @@ const typeDefs = gql`
 
   type Class {
     _id: ID
-    classname: String
+    className: String
     classId: String
     description: String
     instructor: String
-    members: [User]
-    quizIDs: [Quiz]
+    enrollees: [User]
+    quizIds: [Quiz]
     quizCount: Int
+    enrolledCount: Int
   }
 
   type Query {
@@ -81,10 +81,9 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, isInstructor: Boolean!): Auth
     
-    addClass(classname: String!, classId: String!, instructor: String!): Class
-    addQuiz(quizId: String!, quizTitle: String!, points: Int!): Quiz
+    addClass(className: String!, classId: String!, instructor: String!): Class
+    addQuiz(quizId: String!, quizTitle: String!, className: String!, points: Int!): Quiz
     addQuestion(quizTitle: String!, question: String!, answersArr: [String!]): Quiz
-    addScores(username:String!, quizId: String!, missed: [Int]): ScoresSchema
     tallyScores(username: String!, quizId: String!, missed: [Int!]): User
     
     deleteUser(username: String!): User
@@ -94,12 +93,13 @@ const typeDefs = gql`
 
     updateUser(username: String!, email: String, isInstructor: Boolean, scores: [String]): User
     updateQuiz(quizId: String!, quizTitle: String, points: Int, owner: String, class: [String]): Quiz
-    updateClass(classid: String!, classname: String, classId: String, description: String, instructor: String): Class
+    updateClass(classid: String!, className: String!, classId: String!, description: String, instructor: String): Class
   }
 
   type Auth {
     token: ID!
     user: User
+    isInstructor: Boolean
   }
 `;
 

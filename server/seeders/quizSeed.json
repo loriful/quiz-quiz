@@ -2,6 +2,7 @@
     { 
         "quizTitle": "Counting to 10", 
         "quizId": "121212", 
+        "className": "Mathmatics 101",
         "quizQuestions": [ 
             {
                 "question": "What number comes before 9?", 
@@ -10,12 +11,12 @@
             }
         ],
         "points": 2,
-        "classname": "",
         "owner": "Donald"
     },
     { 
         "quizTitle": "Ways to Get Rich", 
         "quizId": "2345", 
+        "className": "Finance 101",
         "quizQuestions": [
             {
                 "question": "What is the easiest way to get rich?", 
@@ -34,12 +35,12 @@
             }
         ],
         "points": 2,
-        "classname": "",
         "owner": "Donald"
     },
     {
         "quizTitle": "Chair Facts", 
-        "quizId": "2345", 
+        "quizId": "4444", 
+        "className": "Furniture Design",
         "quizQuestions": [
             {
                 "question": "What is the best stuffing for big chairs?", 
@@ -58,12 +59,12 @@
             }
             ],
         "points": 2,
-        "classname": "Furniture Design",
         "owner": "Mama Bear"
     },
     {
         "quizTitle": "Home Invasion Prevention", 
-        "quizId": "2345", 
+        "quizId": "5555", 
+        "className": "Criminology",
         "quizQuestions": [
             {
                 "question": "What are the best door locks?", 
@@ -82,7 +83,6 @@
             }
             ],
         "points": 2,
-        "classname": "",
         "owner": "Mama Bear"
     }
 ]
