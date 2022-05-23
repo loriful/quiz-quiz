@@ -1,0 +1,63 @@
+[
+    { 
+        "username" : "Donald", 
+        "isInstructor": true,
+        "email" : "headduck@disney.com", 
+        "password" : "quackquack", 
+        "scores": []
+    },
+    { 
+        "username" : "Huey", 
+        "isInstructor": false,
+        "email" : "jrduck@disney.com", 
+        "password" : "sillyboy", 
+        "scores":   {
+                        "quizId": "121212", 
+                        "missed": [3,4,5], 
+                        "tally": 94
+                    }
+    },
+    { 
+        "username" : "Dewey", 
+        "isInstructor": false,
+        "email" : "thirdduck@disney.com", 
+        "password" : "supersillyboy", 
+        "scores":   {
+                        "quizId": "2345"
+                    }
+    },
+    { 
+        "username" : "Papa Bear", 
+        "isInstructor": true,
+        "email" : "bigdaddy@disney.com", 
+        "password" : "fatboy",
+        "scores": []
+    },
+    { 
+        "username" : "Mama Bear", 
+        "isInstructor": true,
+        "email" : "yourmama@disney.com", 
+        "password" : "biggirl",
+        "scores": []
+    },
+    { 
+        "username" : "Baby Bear", 
+        "isInstructor": false,
+        "email" : "littlebear@disney.com", 
+        "password" : "crybaby",
+        "scores":   {
+                        "quizId": "4356"
+                    }
+    },
+    { 
+        "username" : "Goldilocks", 
+        "isInstructor": false,
+        "email" : "blondie@disney.com", 
+        "password" : "sillygirl",
+        "scores":  {
+                        "quizId": "3210", 
+                        "missed": [1,3,4,5],
+                        "tally": 92
+                    }
+    }
+]

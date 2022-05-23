@@ -1,0 +1,23 @@
+[
+    { 
+        "classname": "Finance 101", 
+        "classId": "1101", 
+        "description": "Introduction to finance for finance majors",
+        "instructor": "Donald",
+        "quizIds": []
+    },
+    {
+        "classname": "Furniture Design", 
+        "classId": "1102", 
+        "description": "Considerations in the design of furniture for wildlife",
+        "instructor": "Mama Bear",
+        "quizIds": []
+    },  
+    {
+        "classname": "Criminology", 
+        "classId": "2201", 
+        "description": "Crimes and their prevention",
+        "instructor": "Barney Fife",
+        "quizIds": []
+    }
+]

@@ -1,0 +1,88 @@
+[
+    { 
+        "quizTitle": "Counting to 10", 
+        "quizId": "121212", 
+        "quizQuestions": [ 
+            {
+                "question": "What number comes before 9?", 
+                "answerArr": ["The number that comes after 7", "Four hundred", "What is 9", "None of the above"],
+                "correct": 0
+            }
+        ],
+        "points": 2,
+        "classname": "",
+        "owner": "Donald"
+    },
+    { 
+        "quizTitle": "Ways to Get Rich", 
+        "quizId": "2345", 
+        "quizQuestions": [
+            {
+                "question": "What is the easiest way to get rich?", 
+                "answerArr": ["Inherit money from your rich uncle", "Learn to code and get a job with a tech company", "Rob your neighbor", "Get a job at a bank"],
+                "correct": 0
+            }, 
+            {
+                "question": "What is the best way to avoid paying fereral taxes?", 
+                "answerArr": ["Inherit money from your rich uncle", "Learn to code and hack the IRS", "Don't make any money", "Get a good accountant"],
+                "correct": 1
+            },
+            {
+                "question": "Scrooge Investments, Inc. wants to raise capital to buy a pond. Which of the following would Scrooge Investments use to raise capital?", 
+                "answerArr": ["Split existing stock", "Sell company bonds", "Take out a loan", "Repurchase outstanding stock"],
+                "correct": 1
+            }
+        ],
+        "points": 2,
+        "classname": "",
+        "owner": "Donald"
+    },
+    {
+        "quizTitle": "Chair Facts", 
+        "quizId": "2345", 
+        "quizQuestions": [
+            {
+                "question": "What is the best stuffing for big chairs?", 
+                "answerArr": ["One hundred dollar bills", "Goldilock curls", "Organic cotton batting", "Buckwheat hulls"],
+                "correct": 2
+            }, 
+            {
+                "question": "What is the best size chair for baby bears?", 
+                "answerArr": ["Big enough for papa", "Just right size", "Little girl size", "Extra wide"],
+                "correct": 1
+            },
+            {
+                "question": "What is the best fabric for covering arm chairs?", 
+                "answerArr": ["Bear skin", "Reenforced nylon", "Cotton", "Lace"],
+                "correct": 1
+            }
+            ],
+        "points": 2,
+        "classname": "Furniture Design",
+        "owner": "Mama Bear"
+    },
+    {
+        "quizTitle": "Home Invasion Prevention", 
+        "quizId": "2345", 
+        "quizQuestions": [
+            {
+                "question": "What are the best door locks?", 
+                "answerArr": ["None, if you're a bear", "Double dead bolt", "Skeleton key", "Locks don't work if you're a little blonde girl."],
+                "correct": 1
+            }, 
+            {
+                "question": "What is the best type of alarm system?", 
+                "answerArr": ["Bears don't need alarems", "Alarms don't work if you are a little girl", "Screaming", "Local and remotely monitored"],
+                "correct": 3
+            },
+            {
+                "question": "What is the best weapon to prevent home invasion??", 
+                "answerArr": ["Bears don't worry about invasion", "A moat with alligators", "A locked and secured house", "Little girls don't need weapons"],
+                "correct": 2
+            }
+            ],
+        "points": 2,
+        "classname": "",
+        "owner": "Mama Bear"
+    }
+]
