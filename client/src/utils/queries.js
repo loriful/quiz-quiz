@@ -1,14 +1,43 @@
 import { gql } from '@apollo/client';
 
-// export const QUERY_USERS = gql`
-//   query getUsers {
-//     getUsers {
-//     username
-//     email
-//     isInstructor
-//     }
-//   }
-// `;
+export const QUERY_PROFILE = gql`
+  {
+    profile {
+      _id
+      username
+      email
+      isInstructor
+      scores {
+        quizId
+        missed
+        tally
+      }
+    }
+  }
+`;
+
+export const QUERY_PROFILE_SHORT = gql`
+  {
+    profile {
+      _id
+      username
+      email
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+{
+  query getUsers {
+    getUsers {
+    username
+    email
+    isInstructor
+    }
+  }
+}
+`;
+
 
 export const QUERY_USER = gql`
   query getUser ($username: String!) {
@@ -21,28 +50,31 @@ export const QUERY_USER = gql`
           quizId
           missed
           tally
-    }
+      }
   }  
 }
+
 `;
 
-// export const QUERY_QUIZZES = gql` 
-//   query getQuizzes {
-//     getQuizzes {
-//       quizTitle
-//       quizId
-//       quizQuestions {
-//         question
-//         answersArr
-//         correct
-//       }
-//       points
-//       className
-//       owner
-//       questionCount
-//     }
-//   }
-// `;
+export const QUERY_QUIZZES = gql` 
+{
+  query getQuizzes {
+    getQuizzes {
+      quizTitle
+      quizId
+      quizQuestions {
+        question
+        answersArr
+        correct
+      }
+      points
+      className
+      owner
+      questionCount
+    }
+  }
+}
+`;
 
 export const QUERY_QUIZ = gql` 
   query getQuiz($quizId: String!) {
@@ -61,19 +93,22 @@ export const QUERY_QUIZ = gql`
   }
 `;
 
-// export const QUERY_CLASSES = gql` 
-//   query getClasses {
-//     getClasses {
-//     _id
-//     className  
-//     classId
-//     description
-//     enrollees {
-//       username
-//       }
-//     enrolledCount
-//   }
-// `;
+export const QUERY_CLASSES = gql` 
+{
+  query getClasses {
+    getClasses {
+    _id
+    className  
+    classId
+    description
+    enrollees {
+      username
+      }
+    enrolledCount
+  }
+}
+}
+`;
 
 export const QUERY_CLASS = gql`
   query getClass($classId: String!) {
