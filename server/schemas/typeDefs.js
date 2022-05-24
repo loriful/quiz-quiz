@@ -64,11 +64,12 @@ const typeDefs = gql`
   }
 
   type Query {
+    profile: User
     getUsers: [User]
     getUser(username: String!): User
 
     getQuizzes: [Quiz]
-    getQuiz(quizTitle: String!): Quiz
+    getQuiz(quizId: String!): Quiz
 
     getClasses: [Class]
     getClass(classId: String!): Class
@@ -99,7 +100,6 @@ const typeDefs = gql`
   type Auth {
     token: ID!
     user: User
-    isInstructor: Boolean
   }
 `;
 

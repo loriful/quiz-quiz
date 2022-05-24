@@ -12,7 +12,8 @@ const userSchema = new Schema(
     },
     isInstructor: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     email: {
       type: String,
