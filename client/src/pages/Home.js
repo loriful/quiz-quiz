@@ -17,7 +17,10 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <div>
-              <img src="https://blog.hubspot.com/hubfs/google-quiz.jpg"></img>
+              <img
+                src="https://blog.hubspot.com/hubfs/google-quiz.jpg"
+                alt="Quiz-Time-!"
+              ></img>
               <ThoughtList thoughts={thoughts} title="Available Quizzes" />
             </div>
           )}
