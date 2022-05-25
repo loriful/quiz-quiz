@@ -25,3 +25,13 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_QUIZ = gql`
+  mutation updateUser($username: String!, $scores: [String]) {
+    updateUser(username: $username, scores: $scores) {
+      scores {
+        quizId
+      }
+    }
+  }
+`;

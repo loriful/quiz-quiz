@@ -66,28 +66,18 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <p>Are you are an instructor?</p>
-               {/* <select type='isIntructor' id='isInstructor' name='isInstructor' value={formState.isInstructor}  onChange={handleChange}>
-                 <option  value='false'>No</option>
-                 <option  value='true'>Yes</option>
-               </select> */}
-              <input
-                type='button'
-                style={{ margin: "10px" }}
-                name='isInstructor'
-                id='isInstructor'
-                value={formState.isInstructor=false}
-                onChange={handleChange}
-              />
-              <input
-                type='button'
-                style={{ margin: "10px" }}
-                name='isInstructor'
-                id='isInstructor'
-                value={formState.isInstructor=true}
-                onChange={handleChange}
-              />
-             
+            <div>
+              <label>I am an instructor
+                <input
+                  type='button'
+                  style={{ margin: "10px" }}
+                  name='isInstructor'
+                  id='isInstructor'
+                  value={formState.isInstructor=true}
+                  onChange={handleChange}
+                />
+              </label>
+          </div>   
               <button className='btn d-block w-100' type='submit'>
                 Submit
               </button>

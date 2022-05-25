@@ -4,7 +4,6 @@ import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 
@@ -58,11 +57,6 @@ function App() {
                   element={<Profile />}
                 />
                 <Route
-                  path="/thought"
-                  element={<SingleThought />}
-                />
-
-                <Route
                   path="*"
                   element={<NoMatch />}
                 />
@@ -70,10 +64,7 @@ function App() {
                     path="/profile/:username?"
                     element={<Profile />}
                   />
-                  <Route
-                    path="/thought/:id"
-                    element={<SingleThought />}
-                  />
+                 
               </Routes>
             </div>
             <Footer />
