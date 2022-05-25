@@ -7,6 +7,7 @@ import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import CreateQuiz from './pages/CreateQuiz';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -60,6 +61,10 @@ function App() {
                 <Route
                   path="/thought"
                   element={<SingleThought />}
+                />                
+                <Route
+                  path="/createquiz"
+                  element={<CreateQuiz />}
                 />
 
                 <Route
