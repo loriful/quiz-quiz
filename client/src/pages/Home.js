@@ -22,7 +22,7 @@ const Home = () => {
           {/* provide for different user experience when logged in */}
           {loggedIn && userData ? (
           <div className="col-12 col-lg-3 mb-3">
-            <div>User is logged in, show them some love, maybe quizzes and classes</div>
+            <div>User is logged in, show them some love with quizzes and classes</div>
           {/* <FriendList        // placeholder for quizlist or class list or both based on username
               username={userData.me.username}
               friendCount={userData.me.friendCount}

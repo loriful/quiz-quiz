@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import CreateQuiz from './pages/CreateQuiz';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -56,6 +57,15 @@ function App() {
                   path="/profile"
                   element={<Profile />}
                 />
+                {/* <Route
+                  path="/thought"
+                  element={<SingleThought />}
+                />                 */}
+                <Route
+                  path="/createquiz"
+                  element={<CreateQuiz />}
+                />
+
                 <Route
                   path="*"
                   element={<NoMatch />}

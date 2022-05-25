@@ -18,6 +18,7 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <Link to="/profile">Profile</Link>
+              <Link to="/createquiz">Create A Quiz</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>
@@ -26,6 +27,7 @@ const Header = () => {
             <>
               <Link to="/login">Login</Link>
               <Link to="/signup">Signup</Link>
+
             </>
           )}
         </nav>      
