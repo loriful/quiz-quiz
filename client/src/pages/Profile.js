@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import UserQuizList from '../components/UserQuizList';
-import QuizForm from '../components/QuizForm';
+// import QuizForm from '../components/QuizForm';
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_PROFILE } from '../utils/queries';
 // import { ADD_QUIZ } from '../utils/mutations';
 import Auth from '../utils/auth';

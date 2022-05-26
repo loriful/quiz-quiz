@@ -14,10 +14,12 @@ Project 3. MERN stack quiz application using Apollo GraphQL and JWT authenticati
 
 Practice: 
   - JavaScript
-  - Node
-  - Express
   - MongoDB
+  - Mongoose
+  - Express
   - React
+  - Node
+  - JSON Web Token
 
 ## **Table of Contents**
 - [Description](#description)
