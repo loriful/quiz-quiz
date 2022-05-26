@@ -6,7 +6,7 @@
 #### GitHub: https://github.com/loriful/quiz-quiz
 
 ## **Deployment**
-#### Heroku:  https://git.heroku.com/shielded-dusk-33243.git
+#### Heroku:   https://shielded-dusk-33243.herokuapp.com/
 
 
 ## **Description**
