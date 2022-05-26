@@ -6,7 +6,7 @@
 #### GitHub: https://github.com/loriful/quiz-quiz
 
 ## **Deployment**
-#### Heroku:  
+#### Heroku:  https://git.heroku.com/shielded-dusk-33243.git
 
 
 ## **Description**
@@ -20,6 +20,7 @@ Practice:
   - React
   - Node
   - JSON Web Token
+  - Apollo graphQL
 
 ## **Table of Contents**
 - [Description](#description)
