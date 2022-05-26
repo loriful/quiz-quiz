@@ -10,7 +10,7 @@
 
 
 ## **Description**
-Project 3. MERN stack quiz application using Apollo GraphQL and JWT authentication.
+Project 3. MERN stack Single Page App quiz application using Apollo GraphQL and JWT authentication.
 
 Practice: 
   - JavaScript
@@ -21,6 +21,7 @@ Practice:
   - Node
   - JSON Web Token
   - Apollo graphQL
+  - Single Page Application
 
 ## **Table of Contents**
 - [Description](#description)
