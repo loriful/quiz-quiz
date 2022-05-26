@@ -24,8 +24,22 @@ Practice:
 
 ## **Table of Contents**
 - [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Questions](#questions)
 
+## **The Site View**
+
+<p align="center">
+  <img src="./client/public/assets/images/mock-up.png" alt="Web Page Mock-Up">
+  </b>
+  </b>
+</p>
+
+## **Installation**
+- Requires Node and MongoDB, and npm packages Express and Mongoose
+- Run install from the root directory
+- Deployed to Heroku for testing and use
 
 ## **Questions**
 ### Github Profile:  https://github.com/loriful
